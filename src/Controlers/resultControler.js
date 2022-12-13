@@ -14,4 +14,18 @@ const userResult = async (req, res)=>{
     }
 }
 
-module.exports = { userResult};
+const showResult = async(req,res)=>{
+    try{
+        let uId= req.params.uid
+        console.log(uId)
+        //let user = await userModel.find({id:user_Id})
+        let scoreData = await resultModel.find({user_id:uId});
+        //let levelscore = await resultModel.find(level);
+        res.status(200).send({data:scoreData}); 
+    }
+    catch(err){
+        res.status(501).send({Error: err})
+    }
+}
+
+module.exports = { showResult, userResult};

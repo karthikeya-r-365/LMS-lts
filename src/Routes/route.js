@@ -33,7 +33,7 @@ router.get('/api/get-levels', levelControler.getLevel); //changed the api name /
 
 
 //route to create with qn and ans, means we wil give both qn with answer but will create seperartly in its own models.
-router.post("/api/questions/create-question-with-answer", qnControler.createQuestinsWithAnswer); 
+router.post("/api/create-question", qnControler.createQuestinsWithAnswer); //changed the api name //
 
 
 router.get('/api/get-question/:qid', qnControler.getQuestionByID); //changed the api name  // working
@@ -53,7 +53,9 @@ router.get("/api/get-answer/:qid", ansControler.check); //changed the api name /
 
 
 //.................{result routes}.................//
-router.post('/api/create-result', resultController.userResult);  
+router.post('/api/create-result', resultController.userResult);  //changed the api name //working
+
+router.get('/api/get-results/:uid', resultController.showResult); //changed the api name //working
 
 
 module.exports = router
