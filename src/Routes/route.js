@@ -8,11 +8,24 @@ const userController = require('../Controlers/userControler')
 const resultController = require("../Controlers/resultControler")
 
 
-router.post('/api/user', userController.creatUser);
 
-router.post('/api/level', levelControler.createLevel);
+//...........................{User Routes}.............................//
 
-router.get('/api/level/get-all', levelControler.getLevel);
+//creating the user
+router.post('/api/create-user-info', userController.creatUser);  //changed the api name //working
+
+//fetching the user with uId in path params
+router.get('/api/get-user-info/:uid', userController.fetch_user);  //changed the api name  //workiong 
+
+
+//....................{Level routes}...................................//
+
+//create new level 
+router.post('/api/create-level', levelControler.createLevel); //changed the api name //working
+
+
+//get all levels in the dataBase
+router.get('/api/get-levels', levelControler.getLevel); //changed the api name //working
 
 
 
@@ -20,26 +33,27 @@ router.get('/api/level/get-all', levelControler.getLevel);
 
 
 //route to create with qn and ans, means we wil give both qn with answer but will create seperartly in its own models.
-router.post("/api/questions/create-question-with-answer", qnControler.createQuestinsWithAnswer);
+router.post("/api/questions/create-question-with-answer", qnControler.createQuestinsWithAnswer); 
 
 
+router.get('/api/get-question/:qid', qnControler.getQuestionByID); //changed the api name  // working
 
 //route to get level specifc questiouns from the data base.
-router.get('/api/questions/get-questions-by-levelId/:levelId', qnControler.getQuestions_by_levelID)
+router.get('/api/get-questions/:levelid', qnControler.getQuestions_by_levelID) //changed api name //working
 
 //route to get level specific limited number of questions from database.
-router.get("/api/questions/get-questions-by-levelId-with-limit/:levelId", qnControler.getQuestion_by_levelId_limit)
+router.get("/api/get-questions-limit/:levelid", qnControler.getQuestion_by_levelId_limit) //changed the api name //working
 
 
 
 
 //...............................{answers routes}............//
 
-router.get("/api/answer/get-answer", ansControler.check);
+router.get("/api/get-answer/:qid", ansControler.check); //changed the api name //working
 
 
 //.................{result routes}.................//
-router.post('/api/result', resultController.userResult);
+router.post('/api/create-result', resultController.userResult);  
 
 
 module.exports = router

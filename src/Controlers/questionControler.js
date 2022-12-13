@@ -3,23 +3,6 @@ const questionModel = require('../Models/questionModel');
 const ansModel = require('../Models/answerModel');
 
 
-const createQuestions = async (req, res)=>{
-    try{
-        let data = req.body;
-
-        let {level_id, question_title, question_disc, question_points, options}= data;
-        
-        let nData = await questionModel.create(data)
-
-        res.status(201).send({data: nData});
-
-
-    } catch(err){
-        console.log(err)
-        res.status(501).send({Error: err})
-    }
-}
-
 const createQuestinsWithAnswer = async (req, res) =>{
     try{
         let data = req.body;
@@ -55,10 +38,28 @@ const createQuestinsWithAnswer = async (req, res) =>{
     }
 }
 
+const getQuestionByID = async (req, res)=>{
+    try{
+        //let lmt_nbr = req.query.lmt_nbr
+        let qID =  req.params.qid
+        //console.log(levelId)
+        let allData = await questionModel.find({_id:qID})
+        //console.log(allData)
+
+        res.status(200).send({data: allData});
+
+
+    } catch(err){
+        console.log(err)
+        res.status(501).send({Error: err})
+    }
+
+}
+
 
 const getQuestions_by_levelID = async (req, res)=>{
     try{
-        let lvl_ID = req.params.levelId
+        let lvl_ID = req.params.levelid
         let allData = await questionModel.find({level_id:lvl_ID})
 
         res.status(200).send({data: allData})
@@ -70,9 +71,10 @@ const getQuestions_by_levelID = async (req, res)=>{
 
 const getQuestion_by_levelId_limit = async (req, res)=>{
     try{
-        let lvl_ID = req.params.levelId
+        let lvl_ID = req.params.levelid
         //let lmt_nbr = req.query.limitNbr
         //console.log(lmt_nbr)
+
         let allData = await questionModel.find({level_id:lvl_ID}).limit(req.query.limit)
 
         res.status(200).send({data: allData})
@@ -82,4 +84,4 @@ const getQuestion_by_levelId_limit = async (req, res)=>{
     }
 }
 
-module.exports = {createQuestions, createQuestinsWithAnswer, getQuestions, getQuestionWithId, getQuestions_by_levelID, getQuestion_by_levelId_limit}
+module.exports = {getQuestionByID, createQuestinsWithAnswer, getQuestions_by_levelID, getQuestion_by_levelId_limit}

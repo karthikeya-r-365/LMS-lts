@@ -5,13 +5,15 @@ const ansModel = require('../Models/answerModel');
 let check = async (req, res)=>{
     try{
 
-        let data = req.body;
+        let qn_id = req.params.qid;
 
-        let {qn_id } = data;
+        //let {qn_id } = data;
 
-        let ansData = await ansModel.findOne({question_id:data.qn_id});
+        let ansData = await ansModel.findOne({question_id:qn_id});
 
-        let rp = {answer: ansData.answer }
+        let rp = {qn_id: ansData.question_id,
+            answer: ansData.answer
+         }
 
         res.status(200).send({data:rp})
             
@@ -23,4 +25,4 @@ let check = async (req, res)=>{
 }
 
 
-module.exports = {copt, check}//, multiCheck}
+module.exports = {check} //, multiCheck}
