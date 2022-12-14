@@ -13,8 +13,6 @@ const userSchema = new mongoose.Schema({
 
     email_id:{ type:String, required: true, unique: true},
 
-    linkedIN_url:{ type:String, required: true},
-
     image:{type: String},
     
     isDisabled:{type:Boolean, default: false },

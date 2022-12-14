@@ -4,7 +4,7 @@ const creatUser = async (req, res)=>{
 try {
     let data = req.body;
 
-    let {uid, first_Name, last_Name, mobile_Number, email_id, linkedIN_url} = data;
+    let {uid, first_Name, last_Name, mobile_Number, email_id} = data;
 
     let dup_uid = await userModel.findOne({uid: uid})
 
