@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
 
     last_Name:{ type:String, required: true},
 
-    mobile_Number:{ type:String, required: true, unique: true},
+    mobile_Number:{ type:String, required: true},
 
     email_id:{ type:String, required: true, unique: true},
 

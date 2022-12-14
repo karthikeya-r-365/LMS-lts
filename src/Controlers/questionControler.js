@@ -20,15 +20,18 @@ const createQuestinsWithAnswer = async (req, res) =>{
             options: data.options
         });
 
-        //console.log(qData);
+        if(Object.keys(qData).length === 0) return res.status(502).send({status: false, msg:`Question_Data has not created in the DataBase due to error`})
 
+        //console.log(qData);
+        
         let aData = await ansModel.create({
             question_id: qData._id,
             answer: data.answer
         });
 
         //console.log(aData)
-
+        if(Object.keys(aData).length === 0) return res.status(502).send({status: false, msg:`answer_Data has not created in the DataBase due to error`})
+        
         res.status(201).send({qnData: qData, ansData: aData})
 
 
