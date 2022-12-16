@@ -45,6 +45,10 @@ router.get('/api/get-questions/:levelid', qnControler.getQuestions_by_levelID) /
 router.get("/api/get-questions-limit/:levelid", qnControler.getQuestion_by_levelId_limit) //changed the api name //working
 
 
+//route to insert multiple questions and answer at a time.
+router.post("/api/insert-all-questions", qnControler.insertMany)
+
+
 
 
 //...............................{answers routes}............//
